@@ -76,7 +76,7 @@
 .like-icon.is-liked .contour {
     fill: var(--animation-fill-color);
     transition-duration: 0.3s;
-    transition-duration: 0.6s;
+    transition-delay: 0.6s;
 }
 
 .like-icon.is-liked .core {
