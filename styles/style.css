@@ -27,7 +27,7 @@
 }
 
 .header {
-  font-weight: 400;
+  font-variation-settings: 'wght' var(--font-weight);
   line-height: 100%;
   letter-spacing: 0;
   text-align: center;
@@ -52,7 +52,6 @@
 }
 
 .clamp {
-  
   inline-size: clamp(375px, 100%, 700px);
 }
 
@@ -66,7 +65,7 @@
 }
 
 .header-logo-description {
-  font-weight: 400;
+  font-variation-settings: 'wght' var(--font-weight);
   line-height: 100%;
   letter-spacing: 0%;
   font-size: clamp(0.875rem, 0.226rem + 2.7692vw, 1.4375rem);
@@ -146,7 +145,7 @@
   right: 25px;
   top: 25px;
   font-family: var(--accent-font, fantasy);
-  font-weight: 400;
+  font-variation-settings: 'wght' var(--font-weight);
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0%;
@@ -161,7 +160,6 @@
   padding: 25px;
   font-family: var(--main-font);
   font-weight: 410;
-  font-style: Regular;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0%;
@@ -178,7 +176,7 @@
   gap: 8px;
 }
 
-.like-icon {
+.like-button {
   outline: none;
   background: transparent;
   border: none;
@@ -186,20 +184,86 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
+  padding: 0;
 }
 
-.card__like-button {
-  font-family: var(--accent-font, fantasy);
-  font-weight: 400;
+.like-button:focus {
+  outline: none;
+}
+
+.like-button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -1px;
+  transition: outline 0.3s ease;
+}
+
+.button {
+    font-family: var(--accent-font, fantasy);
+  font-variation-settings: 'wght' var(--font-weight);
   font-size: 14px;
   line-height: 90%;
   letter-spacing: 0%;
   padding: 10px 21px;
   display: flex;
   justify-content: center;
+  position: relative;
+  color: var(--main-color);
+  box-shadow: none;
 }
 
 
+.card__like-button {
+  font-family: var(--accent-font, fantasy);
+  font-variation-settings: 'wght' var(--font-weight);
+  font-size: 14px;
+  line-height: 90%;
+  letter-spacing: 0%;
+  padding: 10px 21px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  color: var(--main-color);
+  box-shadow: none;
+}
+
+.card__like-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-color);
+  
+  transform: scaleX(0);
+  transform-origin: left;
+  
+  transition: transform 0.5s ease-in-out;
+  z-index: 1;
+}
+
+.card__like-button:hover::before {
+  transform: scaleX(1);
+  
+}
+
+.card__like-button:focus {
+  color: var(--accent-color);
+  background-color: var(--background-color);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 2px 2px 0 0 var(--accent-color);
+}
+
+.card__like-button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px 0 0 var(--accent-color);
+}
+
+.card__like-button:not(:focus) {
+  box-shadow: 0px 0px 0 0;
+  background-color: var(--background-color);
+}
 
 .save{
   padding: 15px 20px;
@@ -217,7 +281,23 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
-  border: 1px;
+  mix-blend-mode: difference;
+  color: var(--background-color);
+  position: relative;
+  z-index: 3;
+  stroke: currentColor;
+}
+
+.button__text {
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+  color: var(--background-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  
 }
 
 .post .button__text {
@@ -225,6 +305,51 @@
   inline-size: 83px;
   block-size: 13px;
 }
+
+.dialog[open] {
+    font-family: var(--accent-font, fantasy);
+    text-transform: uppercase;
+    line-height: 150%;
+    font-size: 14px;
+    background-color: var(--background-color);
+    inline-size: 353px;
+    padding: 25px;
+}
+
+.dialog-content {
+  display: flex;
+  margin-block-end: 25px;
+  gap: 20px;
+  align-items: center;
+}
+
+.dialog-text {
+  inline-size: 234px;
+}
+
+.dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dialog-save {
+  inline-size: 100%;
+  
+}
+
+.dialog-button-text {
+font-variation-settings: 'wght' var(--font-weight);
+font-size: 14px;
+line-height: 90%;
+letter-spacing: 0%;
+text-transform: uppercase;
+
+}
+
+.dialog-button__icon {
+  inline-size: 43px;
+  block-size: 42px;
+}
+
 
 
 
@@ -258,5 +383,15 @@
     inline-size: 28px;
     block-size: 28px;
   }
+
+  .dialog[open] {
+    padding: 35px;
+  }
+
+  .dialog-button__icon {
+    inline-size: 43px;
+    block-size: 42px;
+  }
+  
 }
 
